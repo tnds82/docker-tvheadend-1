@@ -2,10 +2,10 @@ FROM ubuntu:16.04
 
 MAINTAINER "Marco Huenseler <marco.huenseler+git@gmail.com>"
 
-ENV BUILD_DEPS="build-essential cmake pkg-config libavahi-client-dev libssl-dev zlib1g-dev wget libcurl4-gnutls-dev git-core liburiparser-dev"
+ENV BUILD_DEPS="build-essential pkg-config libavahi-client-dev libssl-dev zlib1g-dev wget libcurl4-gnutls-dev git-core liburiparser-dev"
 
-# Head of master as of 2017/03/26
-ENV BUILD_COMMIT="1fddf329a8fad2814439b5c0d5b7f1bfc98877cd"
+# TVHeadend v4.1 tag
+ENV BUILD_COMMIT="52e837590778ff1a0310cfb1240763327b835491"
 
 # Build TVHeadend
 RUN apt-get update && \
