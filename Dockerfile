@@ -4,8 +4,8 @@ MAINTAINER "Marco Huenseler <marco.huenseler+git@gmail.com>"
 
 ENV BUILD_DEPS="build-essential cmake pkg-config libavahi-client-dev libssl-dev zlib1g-dev wget libcurl4-gnutls-dev git-core liburiparser-dev"
 
-# Latest successful CI builded commit of master as of 2018/03/15
-ENV BUILD_COMMIT="438954756dfba0f0d16adb085baab4fe87a0f2d2"
+# Latest successful CI builded commit of master as of 2018/05/06
+ENV BUILD_COMMIT="f4ebe3389e7f6bbf0b97294a1f3671f37ad14f27"
 
 # Build TVHeadend
 RUN apt-get update && \
