@@ -1,21 +1,22 @@
-FROM ubuntu:18.04
+FROM ubuntu:16.04
 
-MAINTAINER "Marco Huenseler <marco.huenseler+git@gmail.com>"
+MAINTAINER tnds82
 
 ENV BUILD_DEPS="build-essential cmake pkg-config libavahi-client-dev libssl-dev zlib1g-dev wget libcurl4-gnutls-dev git-core liburiparser-dev libdvbcsa-dev"
 
-# Latest successful CI builded commit of master as of 2018/05/06
-ENV BUILD_COMMIT="f4ebe3389e7f6bbf0b97294a1f3671f37ad14f27"
+RUN apt update
+RUN apt install -y --no-install-suggests --no-install-recomends \
+    $BUILD_DEPS git dvb-apps -y
 
-# Build TVHeadend
-RUN apt-get update && \
-    apt-get install -y --no-install-suggests --no-install-recommends \
-        $BUILD_DEPS gettext bzip2 python curl ca-certificates \
-        libssl1.0.0 zlib1g liburiparser1 libavahi-common3 libavahi-client3 libdbus-1-3 libselinux1 liblzma5 libgcrypt20 libpcre3 libgpg-error0 libdvbcsa1 && \
-    git clone https://github.com/tvheadend/tvheadend /tvh-build && \
+RUN git clone https://github.com/tvheadend/tvheadend.git /tvh-build && \
     cd /tvh-build && \
-    git checkout -b work $BUILD_COMMIT && \
-    ./configure --prefix=/usr && \
+    git pull && \
+    ./Autobuild.sh -o deps -t debian && \
+    apt install ccache -y && \
+    ./configure --prefix=/usr \
+                --enable-ccache \
+                --enable-ffmpeg_static \
+                --enable-hdhomerun_static && \
     make && \
     make install && \
     rm -rf /tvh-build && \
@@ -24,7 +25,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Create user & group
 RUN groupadd -g 10710 tvheadend && \
     useradd -u 10710 -g tvheadend tvheadend && \
     install -o tvheadend -g tvheadend -d /tvh-data
