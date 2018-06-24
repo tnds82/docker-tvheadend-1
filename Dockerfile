@@ -7,7 +7,9 @@ RUN apt-get install git dvb-apps ccache -y
 RUN git clone https://github.com/tvheadend/tvheadend.git /tvh-build && \
     cd /tvh-build && \
     ./Autobuild.sh -o deps -t debian && \
-    AUTOBUILD_CONFIGURE_EXTRA="--enable-ccache --enable-ffmpeg_static --enable-hdhomerun_static" ./Autobuild.sh -t xenial-amd64 && \
+    AUTOBUILD_CONFIGURE_EXTRA="--enable-ccache --enable-ffmpeg_static --enable-hdhomerun_static" ./Autobuild.sh -t xenial-amd64 -j$(nproc)
+    
+RUN cd /tvh-build &&\
     make %% \
     make install
 RUN rm -rf /tvh-build
