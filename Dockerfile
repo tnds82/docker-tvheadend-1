@@ -3,7 +3,14 @@ FROM ubuntu:16.04
 MAINTAINER tnds82
 
 RUN apt-get update
-RUN apt-get install git dvb-apps ccache -y
+RUN apt-get install git dvb-apps ccache libva-dev -y
+
+RUN git clone https://github.com/intel/libva.git /libva &&\
+    cd /libva && \
+    ./autogen.sh && \
+    ./configure --prefix=/usr && \
+    make install
+
 RUN git clone https://github.com/tvheadend/tvheadend.git /tvh-build && \
     cd /tvh-build && \
     ./Autobuild.sh -o deps -t debian && \
