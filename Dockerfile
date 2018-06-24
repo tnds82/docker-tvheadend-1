@@ -11,10 +11,12 @@ RUN git clone https://github.com/tvheadend/tvheadend.git /tvh-build && \
                 --enable-ccache \
                 --enable-ffmpeg_static\ 
                 --enable-hdhomerun_static \
+                --enable-libav \
+                --enable-vaapi \
                 --enable-nvenc \
                 --enable-nonfree && \
-    make && \
-    make install
+    make -j$(nproc) && \
+    make -j$(nproc) install
 RUN rm -rf /tvh-build
     
 RUN groupadd -g 10710 tvheadend && \
