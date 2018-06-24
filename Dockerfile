@@ -11,7 +11,7 @@ RUN git clone https://github.com/tvheadend/tvheadend.git /tvh-build && \
                 --enable-ccache \
                 --enable-ffmpeg_static\ 
                 --enable-hdhomerun_static && \
-    make %% \
+    make && \
     make install
 RUN rm -rf /tvh-build
     
