@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 MAINTAINER "tnds82 <tndsrepo@gmail.com>"
 
 #Dependencies
-ENV= BUILD_DEPS="cmake git build-essential pkg-config gettext libavahi-client-dev libssl-dev zlib1g-dev wget bzip2 git-core liburiparser-dev libpcre2-dev libdvbcsa-dev python debhelper ccache libcurl4-gnutls-dev"
+ENV BUILD_DEPS="cmake git build-essential pkg-config gettext libavahi-client-dev libssl-dev zlib1g-dev wget bzip2 git-core liburiparser-dev libpcre2-dev libdvbcsa-dev python debhelper ccache libcurl4-gnutls-dev"
 
 #Build Tvheadend
 RUN apt-get update && \
