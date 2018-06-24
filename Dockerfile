@@ -2,13 +2,12 @@ FROM ubuntu:16.04
 
 MAINTAINER tnds82
 
-RUN apt update
-RUN apt install -y git dvb-apps \
+RUN apt-get update
+RUN apt-get install -y git dvb-apps ccache \
 
 RUN git clone https://github.com/tvheadend/tvheadend.git /tvh-build && \
     cd /tvh-build && \
 RUN bash Autobuild.sh -o deps -t debian && \
-    apt install ccache -y
 RUN AUTOBUILD_CONFIGURE_EXTRA="--enable-ccache --enable-ffmpeg_static --enable-hdhomerun_static" ./Autobuild.sh -t xenail-amd64 -j$(nproc) && \
     make && \
     make install && \
