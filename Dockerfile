@@ -4,6 +4,7 @@ MAINTAINER tnds82
 
 RUN apt-get update
 RUN apt-get install git dvb-apps ccache libva-dev -y
+RUN apt-get install -y build-essential autoconf automake libtool m4 lcov perl pkg-config libdrm-dev autoconf libegl1-mesa-dev libgl1-mesa-dev libwayland-dev libx11-dev libxext-dev libxfixes-dev intel-gpu-tools
 
 RUN git clone https://github.com/intel/libva.git /libva && \
     cd /libva && \
