@@ -8,9 +8,9 @@ if [ "${1:0:1}" = '-' ]; then
 fi
 
 # Fix permissions
-if [ "$(stat -c %u:%g /tvh-data)" != "10710:10710" ]; then
+if [ "$(stat -c %u:%g /config)" != "10710:10710" ]; then
     echo "--- /tvh-data does not belong to tvheadend, fix permissions";
-    chown -R tvheadend:tvheadend /tvh-data;
+    chown -R tvheadend:tvheadend /config;
 fi
 
 if [ ! -d /tvh-data/conf/accesscontrol ]; then
