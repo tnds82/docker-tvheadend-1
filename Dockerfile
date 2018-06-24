@@ -5,7 +5,7 @@ MAINTAINER tnds82
 RUN apt-get update
 RUN apt-get install git dvb-apps ccache libva-dev -y
 
-RUN git clone https://github.com/intel/libva.git /libva &&\
+RUN git clone https://github.com/intel/libva.git /libva && \
     cd /libva && \
     ./autogen.sh && \
     ./configure --prefix=/usr && \
