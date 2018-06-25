@@ -7,7 +7,7 @@ ENV BUILD_DEPS="cmake git build-essential pkg-config gettext libavahi-client-dev
 
 #Build Tvheadend
 RUN apt-get update && \
-    apt-get install -y --no-install-suggests --no-install-recomends \
+    apt-get install -y --no-install-suggests --no-install-recommends \
         $BUILD_DEPS curl ca-certificates libva-dev \
         libssl1.0.0 zlib1g liburiparser1 libavahi-common3 libavahi-client3 libdbus-1-3 libselinux1 liblzma5 libgcrypt20 libpcre3 libgpg-error0 libdvbcsa1 && \
     git clone https://github.com/tvheadend/tvheadend.git /tvh-build && \
