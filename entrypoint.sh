@@ -9,11 +9,11 @@ fi
 
 # Fix permissions
 if [ "$(stat -c %u:%g /config)" != "10710:10710" ]; then
-    echo "--- /tvh-data does not belong to tvheadend, fix permissions";
+    echo "--- /config does not belong to tvheadend, fix permissions";
     chown -R tvheadend:tvheadend /config;
 fi
 
-if [ ! -d /tvh-data/conf/accesscontrol ]; then
+if [ ! -d /config/conf/accesscontrol ]; then
     echo "--- No user account set up, bootstrapping by starting with -C flag"
     set -- "$@" "-C"
 fi
